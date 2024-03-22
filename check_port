@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Enter port number to check:"
+
+read PORT
+
+echo "Checking $PORT..."
+
+OUTPUT=$(sudo lsof -i :$PORT -P -n | grep LISTEN)
+
+if  [[  $OUTPUT  ]];  then
+    echo ${OUTPUT}
+else
+    echo "Port not in use!"
+fi
