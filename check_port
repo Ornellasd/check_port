@@ -1,10 +1,9 @@
 #!/bin/bash
 
-echo "Enter port number to check:"
-
 if [[ "$1" != "" ]]; then
     PORT="$1"
 else
+    echo "Enter port number to check:"
     read PORT
 fi
 
