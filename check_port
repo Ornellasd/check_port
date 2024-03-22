@@ -2,14 +2,16 @@
 
 echo "Enter port number to check:"
 
-read PORT
+if [[ "$1" != "" ]]; then
+    PORT="$1"
+else
+    read PORT
+fi
 
-echo "Checking $PORT..."
+PORT_OUTPUT=$(sudo lsof -i :$PORT -P -n | grep LISTEN)
 
-OUTPUT=$(sudo lsof -i :$PORT -P -n | grep LISTEN)
-
-if  [[  $OUTPUT  ]];  then
-    echo ${OUTPUT}
+if  [[  $PORT_OUTPUT  ]];  then
+    echo ${PORT_OUTPUT}
 else
     echo "Port not in use!"
 fi
